@@ -1,0 +1,136 @@
+//Criação das tabelas
+
+CREATE TABLE Categoria (
+  ID INT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE PontoTuristico (
+  ID INT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL,
+  descricao TEXT,
+  horario VARCHAR(255),
+  IDCategoria INT,
+  FOREIGN KEY (IDCategoria) REFERENCES Categoria(ID)
+);
+
+CREATE TABLE Avaliacao (
+  ID INT PRIMARY KEY,
+  avaliacao INT NOT NULL,
+  data_avaliacao DATE NOT NULL,
+  IDPonto INT,
+  FOREIGN KEY (IDPonto) REFERENCES PontoTuristico(ID)
+);
+
+CREATE TABLE Servico (
+  ID INT PRIMARY KEY,
+  nome VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE PontoTuristicoServico (
+  IDPonto INT,
+  IDServico INT,
+  FOREIGN KEY (IDPonto) REFERENCES PontoTuristico(ID),
+  FOREIGN KEY (IDServico) REFERENCES Servico(ID)
+);
+
+
+// Povoamento das tabelas
+
+INSERT INTO Servico (ID, nome) VALUES 
+(1, 'Alimentação'),
+(2, 'Bebidas'),
+(3, 'Lojas de Lembranças'),
+(4, 'Hospedagem');
+
+INSERT INTO Categoria (ID, nome) VALUES 
+(1, 'Praia'),
+(2, 'Cachoeira'),
+(3, 'Balneário');
+
+INSERT INTO PontoTuristico(ID, nome, descricao, horario, IDCategoria) VALUES
+(1, 'Alter do Chão', 'Com uma atmosfera tranquila e acolhedora, 
+a praia oferece aos visitantes a oportunidade de desfrutar de 
+belas paisagens, banhos refrescantes no rio Tapajós e uma variedade 
+de atividades aquáticas, como passeios de barco e caiaque. 
+É um destino perfeito para quem busca relaxar em meio à natureza exuberante', 'Sempre aberto', 1);
+  
+(2, 'Ponta de Pedras',
+'Ponta de Pedras repousa serenamente na margem direita do Rio Tapajós, a uma curta distância de 35 km de 
+Santarém. Além de suas águas cristalinas e paisagens deslumbrantes, a praia é adornada por impressionantes 
+formações rochosas negras, que emergem majestosamente quando o nível das águas baixa, especialmente 
+durante o verão amazônico.', 'Sempre aberto', 1),
+  
+(3, 'Maracanã',
+'Com sua extensa faixa de areias brancas, a Praia do Maracanã apresenta uma infraestrutura 
+completa para receber visitantes e turistas diariamente. Com 17 barracas que oferecem uma variedade de serviços, incluindo bares, 
+restaurantes e peixarias, os visitantes desfrutam de comodidade e opções gastronômicas durante toda 
+a semana.', 'Sempre aberto', 1),
+	
+(4, 'Ponta do cururu',
+'Na margem do Rio Tapajós, próxima à encantadora vila de Alter do Chão, 
+estende-se uma longa e delicada ponta de areia que proporciona um espetáculo diário imperdível na região.
+O entardecer neste local é concorrido, com dezenas de barcos e lanchas ancorados nos dias de maior 
+movimento, criando uma atmosfera vibrante e cativante.', 'Sempre aberto', 1),
+
+(5, 'Pajuçara',
+'A praia de Pajuçara é uma excelente opção para quem busca uma experiência de praia 
+próxima a Santarém, oferecendo uma estrutura completa e a oportunidade de desfrutar de um refrescante 
+banho de mar. Geralmente acessada através de um dos seus diversos restaurantes à beira-mar, 
+a praia de Pajuçara encanta com sua paisagem deslumbrante e seu ambiente convidativo.', 'Sempre aberto', 1);  
+  
+(6, 'Balneário da Bica', 'Com um ambiente amplo, limpo e acolhedor, águas cristalinas e uma paisagem 
+deslumbrante, é o destino perfeito para o seu lazer em família. Venha desfrutar de momentos inesquecíveis 
+conosco. Agende sua visita hoje mesmo e deixe-se encantar pela beleza e tranquilidade deste lugar excepcional!',
+'Todos os dias, das 9h as 18h', 3),
+ 
+(7, 'Riacho Ecológico', '
+Descubra a tranquilidade do Riacho Ecológico! Com suas águas cristalinas e ambiente acolhedor, é o lugar perfeito para um dia 
+de lazer em família. Venha nos visitar e desfrute da beleza natural que temos a oferecer. Reserve agora e venha se encantar conosco!',
+'Todos os dias, das 7h as 19h', 3),
+ 
+(8, 'Balneário da Fran', '
+Explore o Balneário da Fran e mergulhe na natureza! Com suas águas cristalinas, ambiente acolhedor e uma paisagem deslumbrante, 
+é o local ideal para aproveitar momentos inesquecíveis com sua família. Reserve sua visita hoje mesmo e venha desfrutar de toda a 
+tranquilidade e beleza que o Balneário da Fran tem a oferecer!',
+'Sem informações', 3),
+ 
+(9, 'Balneário Mutunuy', 'Para os amantes da natureza e de uma infraestrutura para aqueles que gostam de se divertir em grupos
+de amigos e em família, o Balneário e Restaurante Mutunuy é uma das boas opções para o lazer e entretenimento.
+O local possui uma grande infraestrutura turística para atender visitantes e turistas.',
+'Quarta a domingo, das 9h as 18h', 3),
+ 
+(10, 'Balneário Tira a ressaca', 'Descubra a animação do Balneário Tira Ressaca! Com suas águas refrescantes, ambiente vibrante e uma 
+atmosfera contagiante, é o lugar perfeito para desfrutar de momentos divertidos com amigos e família. 
+Venha se juntar à diversão e aproveitar toda a energia deste local movimentado. ',
+'Todos os dias, das 9h as 18h', 3);
+
+INSERT INTO PontoTuristicoServico(IDPonto, IDServico) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(2, 1),
+(2, 2),
+(2, 3),
+(2, 4),
+(3, 1),
+(3, 2),
+(3, 3),
+(3, 4),
+(4, 1),
+(4, 2),
+(5, 1),
+(5, 2),
+(6, 1),
+(6, 2),
+(7, 1),
+(7, 2),
+(8, 1),
+(8, 2),
+(9, 1),
+(9, 2),
+(10, 1),
+(10, 2);
+
+
