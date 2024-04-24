@@ -1,4 +1,4 @@
-//Criação das tabelas
+
 
 CREATE TABLE Categoria (
   ID INT PRIMARY KEY,
@@ -19,6 +19,8 @@ CREATE TABLE Avaliacao (
   avaliacao INT NOT NULL,
   data_avaliacao DATE NOT NULL,
   IDPonto INT,
+ 	IDUsuario INT,
+	FOREIGN KEY (IDUsuario) REFERENCES Usuario(ID),
   FOREIGN KEY (IDPonto) REFERENCES PontoTuristico(ID)
 );
 
@@ -34,8 +36,6 @@ CREATE TABLE PontoTuristicoServico (
   FOREIGN KEY (IDServico) REFERENCES Servico(ID)
 );
 
-
-// Povoamento das tabelas
 
 INSERT INTO Servico (ID, nome) VALUES 
 (1, 'Alimentação'),
@@ -53,7 +53,7 @@ INSERT INTO PontoTuristico(ID, nome, descricao, horario, IDCategoria) VALUES
 a praia oferece aos visitantes a oportunidade de desfrutar de 
 belas paisagens, banhos refrescantes no rio Tapajós e uma variedade 
 de atividades aquáticas, como passeios de barco e caiaque. 
-É um destino perfeito para quem busca relaxar em meio à natureza exuberante', 'Sempre aberto', 1);
+É um destino perfeito para quem busca relaxar em meio à natureza exuberante', 'Sempre aberto', 1),
   
 (2, 'Ponta de Pedras',
 'Ponta de Pedras repousa serenamente na margem direita do Rio Tapajós, a uma curta distância de 35 km de 
@@ -77,7 +77,7 @@ movimento, criando uma atmosfera vibrante e cativante.', 'Sempre aberto', 1),
 'A praia de Pajuçara é uma excelente opção para quem busca uma experiência de praia 
 próxima a Santarém, oferecendo uma estrutura completa e a oportunidade de desfrutar de um refrescante 
 banho de mar. Geralmente acessada através de um dos seus diversos restaurantes à beira-mar, 
-a praia de Pajuçara encanta com sua paisagem deslumbrante e seu ambiente convidativo.', 'Sempre aberto', 1);  
+a praia de Pajuçara encanta com sua paisagem deslumbrante e seu ambiente convidativo.', 'Sempre aberto', 1),  
   
 (6, 'Balneário da Bica', 'Com um ambiente amplo, limpo e acolhedor, águas cristalinas e uma paisagem 
 deslumbrante, é o destino perfeito para o seu lazer em família. Venha desfrutar de momentos inesquecíveis 
@@ -132,5 +132,3 @@ INSERT INTO PontoTuristicoServico(IDPonto, IDServico) VALUES
 (9, 2),
 (10, 1),
 (10, 2);
-
-
