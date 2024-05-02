@@ -36,6 +36,14 @@ CREATE TABLE PontoTuristicoServico (
   FOREIGN KEY (IDServico) REFERENCES Servico(ID)
 );
 
+CREATE TABLE Imagem (
+ ID INT PRIMARY KEY,
+ nome_da_imagem VARCHAR(255) NOT NULL,
+ caminho_da_imagem TEXT,
+ IDPonto INT,
+ FOREIGN KEY (IDPonto) REFERENCES PontoTuristico(ID)
+);
+
 
 INSERT INTO Servico (ID, nome) VALUES 
 (1, 'Alimentação'),
@@ -132,3 +140,16 @@ INSERT INTO PontoTuristicoServico(IDPonto, IDServico) VALUES
 (9, 2),
 (10, 1),
 (10, 2);
+
+INSERT INTO imagem (ID, nome_da_imagem, caminho_da_imagem, idponto)
+VALUES 
+(1, 'alter1, 'https://originalexperience.com.br/wp-content/uploads/2022/08/alter-do-chao.jpg',1),
+(2, 'alter2', 'https://www.escolhaviajar.com/wp-content/uploads/2018/11/Praias-de-Alter-do-Ch%C3%A3o.jpg', 1),
+(3, 'alter3', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgZAeGzNIucMmQrwnqkKdsSQUP4zoz2rAJnTILNTbegA&s', 1),
+(4, 'alter4', 'https://www.viajali.com.br/wp-content/uploads/2022/06/alter-do-chao-00.jpg', 1)
+(5, 'alter5', 'https://www.tevejopelomundo.com.br/wp-content/uploads/2017/09/atendimento-ao-turista-alter-do-chao.jpg', 1)
+(6, 'ponta1','https://santarem.pa.gov.br/storage/posts/September2021/a130655f-b2ad-4aa3-8d8f-cb89977356bc-7q2Yqh.jpg', 2),
+(7, 'ponta2','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnCJWLdtZN2J9CDGnUu3-5tXVle16JIokhp5-BHrtVyA&s', 2),
+(8, 'ponta3','https://imgmd.net/images/v1/guia/1612373/praia-da-ponta-de-pedras.jpg', 2),
+(9, 'ponta4','https://vemparaalter.com.br/wp-content/uploads/2018/01/1praia-ponta-de-pedras-1.jpg', 2),
+(10, 'ponta5','https://www.turisbrasil.com.br/imagens/fotos/br/large/fotos_4376_santarem_praia_ponta_da_pedra.jpg', 2);
